@@ -1,7 +1,6 @@
 <?php
 
 function getFilesFromDir($dir) { 
-
   $files = array(); 
   if ($handle = opendir($dir)) { 
     while (false !== ($file = readdir($handle))) { 
@@ -17,12 +16,10 @@ function getFilesFromDir($dir) {
     } 
     closedir($handle); 
   } 
-
   return array_flat($files); 
 }
 
 function array_flat($array) { 
-
   foreach($array as $a) { 
     if(is_array($a)) { 
       $tmp = array_merge($tmp, array_flat($a)); 
@@ -31,7 +28,6 @@ function array_flat($array) {
       $tmp[] = $a; 
     } 
   } 
-
   return $tmp; 
 }
 
@@ -77,9 +73,9 @@ $ext = $orig_inf["extension"];
 $ffilename = randString(5).".".$ext;
 $allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt');
 
+$ext = strtolower($ext);
 if (in_array($ext, $allowed)) {
   $ffilename = find_fn($ffilename);
-  $ffilename = "i/".$ffilename;
   $fh = fopen($ffilename, "w+");
   fwrite($fh, $contents);
   fclose($fh);
