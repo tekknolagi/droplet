@@ -79,18 +79,15 @@ $allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt');
 
 if (in_array($ext, $allowed)) {
   $ffilename = find_fn($ffilename);
+  $ffilename = "i/".$ffilename;
   $fh = fopen($ffilename, "w+");
   fwrite($fh, $contents);
   fclose($fh);
   chmod($ffilename, 0555);
-
-  foreach (getFilesFromDir("i/") as $key) {
+  foreach (getFilesFromDir("i") as $key) {
     if (md5_file($key) == md5_file($ffilename)) {
       unlink($key);
       $ffilename = $key;
-    }
-    else {
-      //$ffilename = "i/".$ffilename;
     }
   }
 
