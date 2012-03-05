@@ -27,8 +27,9 @@ body {
 <div id="ips">
   Recently uploaded:<br>
   <?php
+  
   if (file_exists("u/".$_SERVER["REMOTE_ADDR"])) {
-    $lines = array_reverse(file("u/".$_SERVER["REMOTE_ADDR"]));
+    $lines = array_reverse(array_unique(file("u/".$_SERVER["REMOTE_ADDR"])));
     if (count($lines) < 10) $c = count($lines);
     else $c = 10;
     for ($i = 0; $i < $c; $i++) {
