@@ -4,9 +4,8 @@ Some notes:
 2. You're going to want a lot of disk space and bandwidth.
 
 TODO:
--md5 to check if file exists before XHR'ing it
 -image deletion of some sort
--ToS of some sort
--logo
 -some way to stamp out imgur
 -Rackspace
+-client gzipping
+-client md5

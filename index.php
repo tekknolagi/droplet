@@ -18,12 +18,15 @@ body {
 
 <div id="show-true">
   <div id="drop-area" style="width:330;height:90;background-color:lightblue;">
-  <div class="drop-over" style="padding-top:20px;font-size:3em;user-select:none;-moz-user-select:none;-khtml-user-select:none;">Drop files here!
-  </div>
+<img src="sitelogo.png" />
+  <div class="drop-over" style="padding-top:20px;font-size:3em;user-select:none;-moz-user-select:none;-khtml-user-select:none;"></div>
 </div>
 </div>
+
 <div id="progress-wrapper" style="background-color:white;height:300px;">
   </div>
+  </div>
+
 <div id="ips">
   Recently uploaded:<br>
   <?php
@@ -33,14 +36,14 @@ body {
     if (count($lines) < 10) $c = count($lines);
     else $c = 10;
     for ($i = 0; $i < $c; $i++) {
-      echo "<a href=\"http://droplet.tk/".$lines[$i]."\">".$lines[$i]."</a><br>";
+      echo "<a href=\"http://droplet.tk/".$lines[$i]."\" target=\"_blank\">".$lines[$i]."</a><br>";
     }
   }
-  else echo "Nothing uploaded from your IP!";x
+  else echo "Nothing uploaded from your IP!";
 ?>
 </div>
-  </div>
 </body>
 
 <script type="text/javascript" src="mootools.js"></script>
 <script type="text/javascript" src="a.js"></script>
+<pre>By using this service, you take all accountability for the content of the uploads.</pre>

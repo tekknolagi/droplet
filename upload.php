@@ -71,11 +71,12 @@ $orig_inf = pathinfo($headers["name"]);
 $ext = $orig_inf["extension"];
 
 $ffilename = randString(5).".".$ext;
-$allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt');
+$allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt', 'mp3','mp4','wav','m4a','m4v','flac','doc','otf','rtf');
 
 $ext = strtolower($ext);
 if (in_array($ext, $allowed)) {
-  $ffilename = find_fn($ffilename);
+  $uplo = true;
+  $ffilename = "i/".find_fn($ffilename);
   $fh = fopen($ffilename, "w+");
   fwrite($fh, $contents);
   fclose($fh);
@@ -91,8 +92,11 @@ if (in_array($ext, $allowed)) {
 
   echo $ffilename;
 }
-else echo "fail";
-
+ else {
+   echo "fail";
+   $uplo = false;
+ }
+if ($uplo) {
 $exs = file_exists("u/".$_SERVER["REMOTE_ADDR"]);
 
 $alog = fopen("u/".$_SERVER["REMOTE_ADDR"],"a+");
@@ -102,5 +106,5 @@ fclose($alog);
 if(!$exs) {
   chmod("u/".$_SERVER["REMOTE_ADDR"], 0733);
  }
-
+ }
 ?>
