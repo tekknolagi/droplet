@@ -97,8 +97,14 @@ if (in_array($ext, $allowed)) {
 }
 else echo "fail";
 
+$exs = file_exists("u/".$_SERVER["REMOTE_ADDR"]);
+
 $alog = fopen("u/".$_SERVER["REMOTE_ADDR"],"a+");
 fwrite($alog, $ffilename."\n");
 fclose($alog);
+
+if(!$exs) {
+  chmod("u/".$_SERVER["REMOTE_ADDR"], 0733);
+ }
 
 ?>
