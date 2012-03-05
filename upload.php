@@ -83,7 +83,7 @@ if (in_array($ext, $allowed)) {
   $fh = fopen($ffilename, "w+");
   fwrite($fh, $contents);
   fclose($fh);
-  chmod($ffilename, 0555);
+  chmod($ffilename, 0755);
   foreach (getFilesFromDir("i") as $key) {
     if (md5_file($key) == md5_file($ffilename)) {
       unlink($key);
