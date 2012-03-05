@@ -86,9 +86,10 @@ if (in_array($ext, $allowed)) {
   chmod($ffilename, 0755);
   $hash = md5_file($ffilename);
   foreach (getFilesFromDir("i") as $key) {
-    if (md5_file($key) == $hash) {
+    if (md5_file($key) == $hash && $key != $ffilename) {
       unlink($ffilename);
       $ffilename = $key;
+      break;
     }
   }
 

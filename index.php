@@ -32,7 +32,7 @@ body {
     if (count($lines) < 10) $c = count($lines);
     else $c = 10;
     for ($i = 0; $i < $c; $i++) {
-      echo "<a href=\"http://droplet.tk/i/".$lines[$i]."\">".$lines[$i]."</a><br>";
+      echo "<a href=\"http://droplet.tk/".$lines[$i]."\">".$lines[$i]."</a><br>";
     }
   }
   else echo "Nothing uploaded from your IP!";x
