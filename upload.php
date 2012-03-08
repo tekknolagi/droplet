@@ -71,7 +71,7 @@ $orig_inf = pathinfo($headers["name"]);
 $ext = $orig_inf["extension"];
 
 $ffilename = randString(5).".".$ext;
-$allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt', 'mp3','mp4','wav','m4a','m4v','flac','doc','otf','rtf');
+$allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt', 'mp3','mp4','wav','m4a','m4v','flac','doc','otf','rtf','docx');
 
 $ext = strtolower($ext);
 if (in_array($ext, $allowed)) {
