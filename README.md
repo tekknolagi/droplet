@@ -9,3 +9,8 @@ TODO:
 2. Rackspace
 3. client gzipping
 4. client md5
+
+Other contributors:
+
+1. Gwen Howard
+2. Sergey Smirnov
