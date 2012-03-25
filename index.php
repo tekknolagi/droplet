@@ -28,14 +28,21 @@ body {
 <br><br><br>
 <div id="ips">
   Recently uploaded:<br>
-  <?php
-  
+  <?php  
+  clearstatcache();
   if (file_exists("u/".$_SERVER["REMOTE_ADDR"])) {
     $lines = array_reverse(array_unique(file("u/".$_SERVER["REMOTE_ADDR"])));
     if (count($lines) < 10) $c = count($lines);
     else $c = 10;
     for ($i = 0; $i < $c; $i++) {
-      echo "<a href=\"http://droplet.tk/".$lines[$i]."\" target=\"_blank\">"/*<img src=\""*/.$lines[$i]./*"\"  width=\"50\"/>*/"</a><br>";
+      $lines[$i] = trim($lines[$i]);
+      if (file_exists($lines[$i])) {
+	echo "<a href=\"http://droplet.tk/".$lines[$i]."\" target=\"_blank\">".$lines[$i]."</a><br>";
+      }
+      else {
+	echo "http://droplet.tk/".$lines[$i]." (deleted)<br>"; 
+      }
+      
     }
     echo "Want to see the whole list? Click <a href='http://droplet.tk/user.php' target='_blank'>here</a>.";
   }
