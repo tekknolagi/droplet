@@ -89,9 +89,10 @@ if (in_array($ext, $allowed)) {
       break;
     }
   }
-  mysql_connect("localhost","ruyadesigns_img","c88ba6e1");
+  include('sql.php');
+  mysql_connect($server, $user, $password);
   //if (!$con) die("Cound not connect to database: ".mysql_error());
-  mysql_select_db("ruyadesigns_img");
+  mysql_select_db($database);
   $rand_id = randString(50);
   mysql_query("INSERT INTO link (id, fn) VALUES ('$rand_id', '$ffilename')");
   mysql_close();
