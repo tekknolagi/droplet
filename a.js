@@ -7,18 +7,19 @@
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
-				window["fn"+fileid] = xhr.responseText;
+				var obj = eval(xhr.responseText);
+				window["fn"+fileid] = obj[0];
 				if (window["fn"+fileid] != "fail")
-				$("progress"+fileid).innerHTML = "<a href=\""+window["fn"+fileid]+"\" target=\"_blank\">"+file.name.substring(0, 30)+"...-."+ext+"</a>";
+				$("progress"+fileid).innerHTML = "<a href=\""+window["fn"+fileid]+"\" target=\"_blank\">"+file.name.substring(0, 30)+(file.name.length > 30 ? "...-" : "")+/*"."+ext+*/"</a> - To delete: <input type='text' value='http://droplet.tk/delete.php?id="+obj[1]+"' readonly='yes' />";
 				else alert("failed to upload");
 				}
 		}
 		var a = new Element("div");
-		a.id = "progress"+fileid; a.setStyle("background-color", "#4682B4"); a.setStyle("height", "20px"); a.setStyle("width", "330px");
+		a.id = "progress"+fileid; a.setStyle("background-color", "#4682B4"); /*a.setStyle("height", "20px"); */a.setStyle("width", "600px");
 		$("progress-wrapper").adopt(a);
 		xhr.upload.onprogress = function(e, a) {
 			var percent = Math.round((e.loaded*150)/e.total); var acperct = Math.round(percent/1.5);
-			$("progress"+fileid).innerHTML = file.name.substring(0,30)+"...-."+ext+" "+acperct+"%";
+			$("progress"+fileid).innerHTML = file.name.substring(0,30)+(file.name.length > 30 ? "...-" : "")+/*"."+ext+*/" "+acperct+"%";
 		}
 		
 		alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNNOPQRSTUVWXYZ1234567890-_".split("");

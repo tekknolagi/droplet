@@ -71,7 +71,7 @@ $orig_inf = pathinfo($headers["name"]);
 $ext = $orig_inf["extension"];
 
 $ffilename = randString(5).".".$ext;
-$allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt', 'mp3','mp4','wav','m4a','m4v','flac','doc','otf','rtf','docx');
+$allowed = array('png','svg','mov','jpg','jpeg','gif','avi','pdf', 'txt', 'mp3','mp4','wav','m4a','m4v','flac','doc','otf','rtf','docx', 'midi', 'xls', 'xlsx', 'ppt', 'pptx');
 
 $ext = strtolower($ext);
 if (in_array($ext, $allowed)) {
@@ -89,12 +89,17 @@ if (in_array($ext, $allowed)) {
       break;
     }
   }
-
-  echo $ffilename;
+  mysql_connect("localhost","ruyadesigns_img","c88ba6e1");
+  //if (!$con) die("Cound not connect to database: ".mysql_error());
+  mysql_select_db("ruyadesigns_img");
+  $rand_id = randString(50);
+  mysql_query("INSERT INTO link (id, fn) VALUES ('$rand_id', '$ffilename')");
+  mysql_close();
+  echo json_encode(array($ffilename, $rand_id));
 }
  else {
    echo "fail";
-   $uplo = false;
+   $uplo = json_encode(array("false"));
  }
 if ($uplo) {
 $exs = file_exists("u/".$_SERVER["REMOTE_ADDR"]);
