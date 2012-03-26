@@ -81,7 +81,7 @@ if (in_array($ext, $allowed)) {
   fwrite($fh, $contents);
   fclose($fh);
   chmod($ffilename, 0755);
-  $hash = md5_file($ffilename);
+  /*  $hash = md5_file($ffilename);
   foreach (getFilesFromDir("i") as $key) {
     if (md5_file($key) == $hash && $key != $ffilename) {
       unlink($ffilename);
@@ -89,6 +89,7 @@ if (in_array($ext, $allowed)) {
       break;
     }
   }
+  */
   include('sql.php');
   mysql_connect($server, $user, $password);
   //if (!$con) die("Cound not connect to database: ".mysql_error());

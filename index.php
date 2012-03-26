@@ -29,7 +29,6 @@ body {
 <div id="ips">
   Recently uploaded:<br>
   <?php  
-  clearstatcache();
   if (file_exists("u/".$_SERVER["REMOTE_ADDR"])) {
     $lines = array_reverse(array_unique(file("u/".$_SERVER["REMOTE_ADDR"])));
     if (count($lines) < 10) $c = count($lines);
@@ -40,7 +39,7 @@ body {
 	echo "<a href=\"http://droplet.tk/".$lines[$i]."\" target=\"_blank\">".$lines[$i]."</a><br>";
       }
       else {
-	echo "http://droplet.tk/".$lines[$i]." (deleted)<br>"; 
+	echo $lines[$i]." (deleted)<br>"; 
       }
       
     }
