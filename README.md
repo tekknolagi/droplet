@@ -14,3 +14,4 @@ Other contributors:
 
 1. Gwen Howard
 2. Sergey Smirnov
+3. Daniel Supernault (logo)
