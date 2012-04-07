@@ -10,7 +10,7 @@
 	echo "<a href=\"http://droplet.tk/".$lines[$i]."\" target=\"_blank\">".$lines[$i]."</a><br>";
       }
       else {
-	echo "http://droplet.tk/".$lines[$i]." (deleted)<br>"; 
+	echo $lines[$i]." (deleted)<br>"; 
       }
       
     }
