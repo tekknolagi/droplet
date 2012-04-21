@@ -86,11 +86,7 @@ if (in_array($ext, $allowed)) {
   foreach (getFilesFromDir("o") as $key) {
     if (md5_file($key) == $hash && $key != $ffilename) {
       unlink($ffilename);
-      $ffilename[0] = 'i';
-      //      exec("ln -s ".mysql_real_escape_string($key)." ".mysql_real_escape_string($ffilename));
-      symlink($_SERVER['DOCUMENT_ROOT'].$key, $_SERVER['DOCUMENT_ROOT'].$ffilename);
-      chmod($ffilename, 0755);
-      //$ffilename = $key;
+      symlink($key, $ffilename);
       $found = true;
       break;
     }
@@ -99,11 +95,10 @@ if (in_array($ext, $allowed)) {
     $a = $ffilename;
     $a[0] = 'o';
     rename($ffilename, $a);
-    symlink($_SERVER['DOCUMENT_ROOT'].$a, $SERVER['DOCUMENT_ROOT'].$ffilename);
+    symlink($a, $ffilename);
     chmod($a, 0755);
-    chmod($ffilename, 0755);
   }
-    include('sql.php');
+  include('sql.php');
   mysql_connect($server, $user, $password);
 
   //if (!$con) die("Cound not connect to database: ".mysql_error());
@@ -111,7 +106,7 @@ if (in_array($ext, $allowed)) {
   $rand_id = randString(50);
   mysql_query("INSERT INTO link (id, fn) VALUES ('$rand_id', '$ffilename')");
   mysql_close();
-  echo json_encode(array("p".substr($ffilename, 1), $rand_id));
+  echo json_encode(array('p/'.substr($ffilename, 2), $rand_id));
 }
  else {
    echo "fail";
